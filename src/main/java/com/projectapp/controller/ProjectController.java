@@ -43,6 +43,10 @@ public class ProjectController {
             return "error";
         }
     }
+     @GetMapping("/projects/new")
+    public String createProjectForm() {
+        return "create_project";
+    }
 
     @PostMapping("/projects/{projectId}/todos")
     public String addTodo(@PathVariable Long projectId,
