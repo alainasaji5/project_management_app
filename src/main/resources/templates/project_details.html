@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Project Details</title>
+</head>
+<body>
+<h1>Project Details</h1>
+
+<p><strong>Project Name:</strong> <span th:text="${project.name}"></span></p>
+<p><strong>Description:</strong> <span th:text="${project.description}"></span></p>
+<p><strong>Created Date:</strong> <span th:text="${project.createdDate}"></span></p>
+<p><strong>Updated Date:</strong> <span th:text="${project.updatedDate}"></span></p>
+
+<h2>Todos</h2>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th>Created Date</th>
+    <th>Updated Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="todo : ${project.todos}">
+    <td th:text="${todo.id}"></td>
+    <td th:text="${todo.description}"></td>
+    <td th:text="${todo.status}"></td>
+    <td th:text="${todo.createdDate}"></td>
+    <td th:text="${todo.updatedDate}"></td>
+    <td>
+      <form th:action="@{/projects/{projectId}/todos/{todoId}/update(projectId=${project.id}, todoId=${todo.id})}" method="post">
+        <input type="text" name="description" th:value="${todo.description}" placeholder="Description"/>
+        <select name="status">
+          <option th:selected="${todo.status == 'NOT_STARTED'}" value="NOT_STARTED">NOT_STARTED</option>
+          <option th:selected="${todo.status == 'IN_PROGRESS'}" value="IN_PROGRESS">IN_PROGRESS</option>
+          <option th:selected="${todo.status == 'COMPLETED'}" value="COMPLETED">COMPLETED</option>
+        </select>
+        <input type="datetime-local" name="updatedDate" th:value="${#dates.format(todo.updatedDate, 'yyyy-MM-dd\'T\'HH:mm')}" placeholder="Updated Date"/>
+        <button type="submit">Update</button>
+      </form>
+      <form th:action="@{/projects/{projectId}/todos/{todoId}/delete(projectId=${project.id}, todoId=${todo.id})}" method="post">
+        <button type="submit">Delete</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Add New Todo</h2>
+<form th:action="@{/projects/{projectId}/todos(projectId=${project.id})}" method="post">
+  <input type="text" name="description" placeholder="Description" required/>
+  <select name="status">
+    <option value="NOT_STARTED">NOT_STARTED</option>
+    <option value="IN_PROGRESS">IN_PROGRESS</option>
+    <option value="COMPLETED">COMPLETED</option>
+  </select>
+  <input type="datetime-local" name="createdDate" placeholder="Created Date" required/>
+  <input type="datetime-local" name="updatedDate" placeholder="Updated Date" required/>
+  <button type="submit">Add Todo</button>
+</form>
+
+<br/>
+<a href="/projects">Back to Projects List</a>
+</body>
+</html>

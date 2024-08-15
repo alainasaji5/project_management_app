@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+
+        }
+        .card-body {
+            border: 1px solid #ccc;
+            padding: 50px;
+            border-radius: 25px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label, input, button {
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="card-body">
+<h1>hai folks,Project Management</h1>
+
+<!-- Create a New Project Section -->
+<div>
+    <a th:href="@{/projects/new}">Create a New Project</a>
+</div>
+
+<!-- List All Projects Section -->
+<div>
+    <a th:href="@{/projects}">List All Projects</a>
+</div>
+
+<!-- View a Project Section -->
+<div>
+    <a th:href="@{/projects/view}">View a Project</a>
+</div>
+</div>
+</body>
+</html>

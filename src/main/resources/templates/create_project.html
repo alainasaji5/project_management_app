@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Project</title>
+</head>
+<body>
+<h1>Create a New Project</h1>
+
+<form th:action="@{/projects}" method="post">
+  <!-- Project Details -->
+  <label for="projectName">Project Name:</label>
+  <input type="text" id="projectName" name="name" placeholder="Enter Project Name" required>
+  <br/><br/>
+
+  <label for="projectDescription">Description:</label>
+  <input type="text" id="projectDescription" name="description" placeholder="Enter Project Description">
+  <br/><br/>
+
+
+  <h3>Add a Todo</h3>
+  <label for="todoDescription">Todo Description:</label>
+  <input type="text" id="todoDescription" name="todoDescription" placeholder="Enter Todo Description" required>
+  <br/><br/>
+
+  <label for="todoStatus">Status:</label>
+  <select id="todoStatus" name="todoStatus" required>
+    <option value="PENDING">PENDING</option>
+    <option value="IN_PROGRESS">IN_PROGRESS</option>
+    <option value="COMPLETED">COMPLETED</option>
+  </select>
+  <br/><br/>
+
+
+  <label for="todoCreatedDate">Todo Created Date:</label>
+  <input type="datetime-local" id="todoCreatedDate" name="todoCreatedDate" required>
+  <br/><br/>
+
+  <label for="todoUpdatedDate">Todo Updated Date:</label>
+  <input type="datetime-local" id="todoUpdatedDate" name="todoUpdatedDate" required>
+  <br/><br/>
+
+  <button type="submit">Create Project with Todo</button>
+</form>
+
+<br/>
+<a th:href="@{/}">Back to Home</a>
+</body>
+</html>
